@@ -19,9 +19,9 @@ function showTodos() {
     }
     todos.forEach((todoDict, index) => {
         const tr = document.createElement('tr');
-        const td0 = document.createElement('td');
-        td0.textContent = index + 1;
-        tr.appendChild(td0);
+        const tdNum = document.createElement('td');
+        tdNum.textContent = index + 1;
+        tr.appendChild(tdNum);
         for (key in todoDict) {
             tr.appendChild(todoDict[key]);          
         }
@@ -30,19 +30,17 @@ function showTodos() {
 }
 // todoの連想配列を作って返す関数
 function getTodoTdDict(todo) {
-        const td = document.createElement('td');
-        td.textContent = todo;
-        const td2 = document.createElement('td');
+        const tdComment = document.createElement('td');
+        tdComment.textContent = todo;
+        const tdProgress = document.createElement('td');
         const progressButton = document.createElement('button');
         progressButton.textContent = '作業中';
-        td2.appendChild(progressButton);
-        const td3 = document.createElement('td');
+        tdProgress.appendChild(progressButton);
+        const tdDelete = document.createElement('td');
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
-        td3.appendChild(deleteButton);
+        tdDelete.appendChild(deleteButton);
          // todoDict["todo"](or todoDict.todo)でtodoの値=tdTodoにアクセスできる
-    const todoDict = {todo:td, progressButton:td2, deleteButton:td3};
+    const todoDict = {todo:tdComment, progressButton:tdProgress, deleteButton:tdDelete};
     return todoDict;
 }
-
-  
