@@ -10,6 +10,7 @@ addButton.addEventListener('click', () => {
     //  配列にテキスト格納
     todos.push(getTodoTdDict(todo));
     showTodos();
+    
 });
 //配列を出力:テーブルに追加
 function showTodos() {
@@ -39,8 +40,17 @@ function getTodoTdDict(todo) {
         const tdDelete = document.createElement('td');
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
+        deleteButton.addEventListener('click', () => {
+            deleteTodo(todoDict);
+        });
+
         tdDelete.appendChild(deleteButton);
          // todoDict["todo"](or todoDict.todo)でtodoの値=tdTodoにアクセスできる
     const todoDict = {todo:tdComment, progressButton:tdProgress, deleteButton:tdDelete};
     return todoDict;
+}
+//todoDictを削除
+function deleteTodo(todoDict) {
+    todos.splice(todoDict, 1);
+    showTodos();
 }
