@@ -10,7 +10,6 @@ addButton.addEventListener('click', () => {
     //  配列にテキスト格納
     todos.push(getTodoTdDict(todo));
     showTodos();
-    
 });
 //配列を出力:テーブルに追加
 function showTodos() {
@@ -31,26 +30,26 @@ function showTodos() {
 }
 // todoの連想配列を作って返す関数
 function getTodoTdDict(todo) {
-        const tdComment = document.createElement('td');
-        tdComment.textContent = todo;
-        const tdProgress = document.createElement('td');
-        const progressButton = document.createElement('button');
-        progressButton.textContent = '作業中';
-        tdProgress.appendChild(progressButton);
-        const tdDelete = document.createElement('td');
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = '削除';
-        deleteButton.addEventListener('click', () => {
-            deleteTodo(todoDict);
-        });
+    const tdComment = document.createElement('td');
+    tdComment.textContent = todo;
+    const tdProgress = document.createElement('td');
+    const progressButton = document.createElement('button');
+    progressButton.textContent = '作業中';
+    tdProgress.appendChild(progressButton);
+    const tdDelete = document.createElement('td');
+    const deleteButton = createDeleteBtn();
 
-        tdDelete.appendChild(deleteButton);
-         // todoDict["todo"](or todoDict.todo)でtodoの値=tdTodoにアクセスできる
+    tdDelete.appendChild(deleteButton);
+    // todoDict["todo"](or todoDict.todo)でtodoの値=tdTodoにアクセスできる
     const todoDict = {todo:tdComment, progressButton:tdProgress, deleteButton:tdDelete};
     return todoDict;
 }
-//todoDictを削除
-function deleteTodo(todoDict) {
-    todos.splice(todoDict, 1);
-    showTodos();
-}
+function createDeleteBtn() {
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '削除';
+    deleteButton.addEventListener('click', (todoDict) => {
+        todos.splice(todoDict, 1);
+        showTodos();
+    });
+    return deleteButton;
+} 
