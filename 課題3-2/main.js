@@ -41,13 +41,13 @@ function getTodoTdDict(todo) {
 
     tdDelete.appendChild(deleteButton);
     // todoDict["todo"](or todoDict.todo)でtodoの値=tdTodoにアクセスできる
-    const todoDict = {todo:tdComment, progressButton:tdProgress, deleteButton:tdDelete};
+    const todoDict = {todo: tdComment, progressButton: tdProgress, deleteButton: tdDelete};
     return todoDict;
 }
 function createDeleteBtn() {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = '削除';
-    deleteButton.addEventListener('click', (todoDict) => {
+    deleteButton.addEventListener('click', todoDict => {
         todos.splice(todoDict, 1);
         showTodos();
     });
