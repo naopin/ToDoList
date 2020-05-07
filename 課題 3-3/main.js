@@ -36,12 +36,11 @@ function getTodoTdDict(todo) {
         const progressButton = document.createElement('button');
         progressButton.textContent = '作業中';
     progressButton.addEventListener('click', () => {
-            progressButton.classList.toggle('comp');
-            if(progressButton.classList.contains('comp') == true) {
-                progressButton.textContent = '完了';
-            } else if (progressButton.classList.contains('comp') == false) {
-                progressButton.textContent = '作業中';
-            }  
+        if(progressButton.textContent === '作業中') {
+            progressButton.textContent = '完了';
+        } else if(progressButton.textContent === '完了')  {
+            progressButton.textContent = '作業中';
+        }  
     });
         tdProgress.appendChild(progressButton);
         const tdDelete = document.createElement('td');
