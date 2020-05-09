@@ -2,6 +2,13 @@ const todos = [];
 const inputBox = document.getElementById('input');
 const addButton = document.getElementById('add-button');
 const tBody = document.getElementById('todo-list');
+const formRadio = document.getElementById("check");
+const defRadioStatus = {
+    "all": "すべて",
+    "active": "作業中",
+    "complete": "完了"
+}
+formRadio.addEventListener('change', showTodos);
 // 追加するとtodoにテキスト格納
 addButton.addEventListener('click', () => {
     const todo = inputBox.value;
@@ -13,19 +20,22 @@ addButton.addEventListener('click', () => {
 });
 //配列を出力:テーブルに追加
 function showTodos() {
+    const radioStatus = formRadio.status.value;
     // tbodyの中身を空にする
     while (tBody.firstChild) {
         tBody.removeChild(tBody.firstChild);
     }
     todos.forEach((todoDict, index) => {
-        const tr = document.createElement('tr');
-        const tdNum = document.createElement('td');
-        tdNum.textContent = index + 1;
-        tr.appendChild(tdNum);
-        for (key in todoDict) {
-            tr.appendChild(todoDict[key]);          
+        if(defRadioStatus[radioStatus] === "すべて" || defRadioStatus[radioStatus] === todoDict.progressButton.textContent) {
+            const tr = document.createElement('tr');
+            const tdNum = document.createElement('td');
+            tdNum.textContent = index + 1;
+            tr.appendChild(tdNum);
+            for (key in todoDict) {
+                tr.appendChild(todoDict[key]);          
+            }
+            tBody.appendChild(tr);
         }
-        tBody.appendChild(tr);
     });
 }
 // todoの連想配列を作って返す関数
