@@ -4,9 +4,9 @@ const addButton = document.getElementById('add-button');
 const tBody = document.getElementById('todo-list');
 const formRadio = document.getElementById("check");
 const defRadioStatus = {
-    "all": "すべて",
-    "active": "作業中",
-    "complete": "完了"
+    "ALL": "すべて",
+    "ACTIVE": "作業中",
+    "COMPLETE": "完了"
 }
 formRadio.addEventListener('change', showTodos);
 // 追加するとtodoにテキスト格納
